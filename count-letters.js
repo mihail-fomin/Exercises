@@ -1,5 +1,7 @@
 // Count a number of each letter in a given string. Ignore letter casing and punctuation:
 
+// Algo complexity: 4* O(n) * O(n * log n) -- think how to reduce it
+
 const str = "To be, or not to be."
 
 // Expected answer:
