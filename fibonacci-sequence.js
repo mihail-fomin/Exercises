@@ -21,6 +21,13 @@ function makeFibonacciSequence() {
 	};
 }
 
+const fibonacciSequence1 = makeFibonacciSequence()
+console.log(fibonacciSequence1.next()) // 1
+console.log(fibonacciSequence1.next()) // 1
+console.log(fibonacciSequence1.next()) // 2
+console.log(fibonacciSequence1.next()) // 3
+console.log(fibonacciSequence1.next()) // 5
+
 // OOP
 class FibonacciSequence {
 	constructor(n = 0) {
@@ -39,16 +46,10 @@ class FibonacciSequence {
 	}
 }
 
-const fibonacciSequence1 = new FibonacciSequence()
-console.log(fibonacciSequence1.next()) // 1
-console.log(fibonacciSequence1.next()) // 1
-console.log(fibonacciSequence1.next()) // 2
-console.log(fibonacciSequence1.next()) // 3
-console.log(fibonacciSequence1.next()) // 5
+const fibonacciSequence2 = new FibonacciSequence()
+console.log(fibonacciSequence2.next()) // 1
+console.log(fibonacciSequence2.next()) // 1
+console.log(fibonacciSequence2.next()) // 2
+console.log(fibonacciSequence2.next()) // 3
+console.log(fibonacciSequence2.next()) // 5
 
-const fibonacciSequence1 = makeFibonacciSequence()
-console.log(fibonacciSequence1.next()) // 1
-console.log(fibonacciSequence1.next()) // 1
-console.log(fibonacciSequence1.next()) // 2
-console.log(fibonacciSequence1.next()) // 3
-console.log(fibonacciSequence1.next()) // 5
