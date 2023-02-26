@@ -15,6 +15,7 @@ class Queue {
 	}
 
 	push(value) {
+		// O(1)+O(1)+O(1) = O(1) (constant time)
 		const node = new Node(value);
 
 		if (this.head) {
@@ -28,6 +29,7 @@ class Queue {
 	}
 
 	pop() {
+		// O(1)+O(1)+O(1) = O(1) (constant time)
 		if (!this.length) { return }
 		const current = this.head;
 		this.head = this.head.next;
@@ -37,6 +39,7 @@ class Queue {
 	}
 
 	size() {
+		// O(1) (constant time)
 		return this.length
 	}
 }
