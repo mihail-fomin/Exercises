@@ -75,9 +75,7 @@ class MakeJSONPlaceholderAPI extends MakeBaseAPI {
 
 // SWAPI Extend API ("subclass-2")
 class ExtendSwapiAPI extends MakeSwapiAPI {
-	constructor(baseURL) {
-		super(baseURL)
-	}
+
 	async fetchSpecies(headers = {}) {
 		console.log('Fetch species started...')
 		return await super.fetchJSON('/species', headers)
