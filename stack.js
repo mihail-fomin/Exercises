@@ -67,6 +67,14 @@ class Stack {
 		if (!this.items.length) { return "Underflow" }
 		return this.items.pop()
 	}
+
+	isEmpty() {
+		return this.items.length === 0
+	}
+
+	clear() {
+		return this.items = []
+	}
 }
 
 const stack = new Stack()
@@ -75,6 +83,12 @@ stack.push('A')
 stack.push('B')
 stack.push('C')
 
+console.log(stack) // -> ['A', 'B', 'C']
+
 stack.pop()
 
-console.log(stack);
+console.log(stack);  // -> ['A', 'B']
+
+console.log(stack.clear());  // -> []
+stack.push('A')
+console.log(stack) //  -> ['A']
