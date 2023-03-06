@@ -1,5 +1,8 @@
 // Implement a Queue class that exposes few methods: push, pop, size.
 //  The data should pipe through the queue in FIFO order.
+
+const fs = require('fs')
+
 class Node {
 	constructor(value) {
 		this.value = value;
@@ -8,15 +11,16 @@ class Node {
 }
 
 class Queue {
-	constructor() {
-		this.head = null;
-		this.tail = null;
-		this.length = 0;
+	constructor(path) {
+		this.head = null
+		this.tail = null
+		this.length = 0
+		this.path = path
 	}
 
-	push(value) {
+	pushRight(value) {
 		// O(1)+O(1)+O(1) = O(1) (constant time)
-		const node = new Node(value);
+		const node = new Node(value)
 
 		if (this.head) {
 			this.tail.next = node
@@ -26,13 +30,28 @@ class Queue {
 			this.tail = node
 		}
 		this.length++
+		fs.writeFile(this.path, value, () => { })
 	}
 
-	pop() {
+	// pushLeft(value) {
+	// 	// O(1)+O(1)+O(1) = O(1) (constant time)
+	// 	const node = new Node(value)
+
+	// 	if (this.head) {
+	// 		this.head = this.head.next
+	// 		this.head = node
+	// 	} else {
+	// 		this.head = node
+	// 		this.tail = node
+	// 	}
+	// 	this.length++
+	// }
+
+	popLeft() {
 		// O(1)+O(1)+O(1) = O(1) (constant time)
 		if (!this.length) { return }
-		const current = this.head;
-		this.head = this.head.next;
+		const current = this.head
+		this.head = this.head.next
 		this.length--
 
 		return current.value
@@ -44,20 +63,11 @@ class Queue {
 	}
 }
 
-const queue = new Queue()
+const queue = new Queue("./queue.json")
 
-console.log(queue.size());  // 0
+queue.pushRight("A")
+queue.pushRight("B")
+queue.pushRight("C")
 
-queue.push("A")
-console.log(queue.size()); // 1
+console.log(queue);
 
-queue.push("B")
-console.log(queue.size()); // 2
-
-queue.pop() // => "A"
-console.log(queue.size()); // 1
-
-queue.pop() // => "B"
-console.log(queue.size()); // 0
-
-queue.pop() // => An error does not appear 
