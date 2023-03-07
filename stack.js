@@ -52,20 +52,32 @@
 // stack.pop()     // head -> null, tail -> A
 // console.log(stack);
 
+const fs = require('fs')
+
 class Stack {
-	constructor() {
+	constructor(path) {
 		this.items = []
+		this.path = path
 	}
 
 	push(value) {
 		// O(1) (constant time)
 		this.items.push(value)
+		let string = JSON.stringify(this.items)
+		fs.writeFile(this.path, string, () => { })
 	}
 
 	pop() {
 		// O(1)+O(1) = O(1) (constant time)
 		if (!this.items.length) { return "Underflow" }
-		return this.items.pop()
+		let deletedItem = this.items.pop()
+		fs.truncate(this.path, err => {
+			if (err) throw err; // Didn't manage to clean the file
+			console.log(`The file "${this.path}" has been cleaned`);
+		});
+		let string = JSON.stringify(this.items)
+		fs.writeFile(this.path, string, () => { })
+		return deletedItem
 	}
 
 	isEmpty() {
@@ -77,18 +89,17 @@ class Stack {
 	}
 }
 
-const stack = new Stack()
+const stack = new Stack('./stack.json')
 
 stack.push('A')
 stack.push('B')
 stack.push('C')
 
-console.log(stack) // -> ['A', 'B', 'C']
+// console.log(stack) // -> ['A', 'B', 'C']
 
 stack.pop()
+// console.log(stack);  // -> ['A', 'B']
 
-console.log(stack);  // -> ['A', 'B']
-
-console.log(stack.clear());  // -> []
-stack.push('A')
-console.log(stack) //  -> ['A']
+// console.log(stack.clear());  // -> []
+// stack.push('A')
+// console.log(stack) //  -> ['A']
