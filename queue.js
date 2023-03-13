@@ -1,9 +1,7 @@
 // Implement a Queue class that exposes few methods: push, pop, size.
 //  The data should pipe through the queue in FIFO order.
 
-const fs = require('fs')
-
-class Node {
+class Item {
 	constructor(value) {
 		this.value = value;
 		this.next = null;
@@ -18,43 +16,39 @@ class Queue {
 		this.path = path
 	}
 
-	pushRight(value) {
-		// O(1)+O(1)+O(1) = O(1) (constant time)
-		const node = new Node(value)
+	rpush(value) {
+		// O(1) (constant time)
+		const item = new Item(value)
 
-		if (this.head) {
-			this.tail.next = node
-			this.tail = node
+		if (this.tail) {
+			this.tail.next = item
+			this.tail = item
 		} else {
-			this.head = node
-			this.tail = node
+			this.head = item
+			this.tail = item
 		}
 		this.length++
-		fs.writeFile(this.path, value, () => { })
 	}
 
-	// pushLeft(value) {
-	// 	// O(1)+O(1)+O(1) = O(1) (constant time)
-	// 	const node = new Node(value)
-
-	// 	if (this.head) {
-	// 		this.head = this.head.next
-	// 		this.head = node
-	// 	} else {
-	// 		this.head = node
-	// 		this.tail = node
-	// 	}
-	// 	this.length++
-	// }
-
-	popLeft() {
-		// O(1)+O(1)+O(1) = O(1) (constant time)
-		if (!this.length) { return }
+	lpop() {
+		// O(1) (constant time)
+		if (!this.length) { return undefined }
 		const current = this.head
 		this.head = this.head.next
 		this.length--
 
 		return current.value
+	}
+
+	toArray() {
+		// O(n)
+		const xs = []
+		let item = this.head
+		while (item) {
+			xs.push(item.value)
+			item = item.next
+		}
+		return xs
 	}
 
 	size() {
@@ -63,11 +57,16 @@ class Queue {
 	}
 }
 
-const queue = new Queue("./queue.json")
+const queue = new Queue()
 
-queue.pushRight("A")
-queue.pushRight("B")
-queue.pushRight("C")
-
-console.log(queue);
+queue.rpush("A")
+console.log(queue.toArray()); // [ 'A' ]
+queue.rpush("B")
+console.log(queue.toArray()); // [ 'A', 'B' ]
+queue.rpush("C")
+console.log(queue.toArray()); // [ 'A', 'B', 'C' ]
+queue.lpop()
+console.log(queue.toArray()); // [ 'B', 'C' ]
+queue.lpop()
+console.log(queue.toArray()); // [ 'C' ]
 
