@@ -75,19 +75,3 @@ const stack = new PersistentStack("./db.json")
 await stack.init()
 await stack.lpush(5)
 console.log(stack);
-
-// await stack.init()
-
-// await stack.lpush(1)
-// await stack.lpush(2)
-// await stack.lpush(3)
-// console.log(stack.toArray()); // [ 'A' ]
-// await stack.lpush('B')
-// console.log(stack.toArray()); // [ 'B', 'A' ]
-// await stack.lpush('C')
-// console.log(stack.toArray()); // [ 'C', 'B', 'A' ]
-// await stack.lpop()
-// console.log(stack.toArray()); // [ 'B', 'A' ]
-// await stack.lpop()
-// console.log(stack.toArray()); // [ 'A' ]
-
