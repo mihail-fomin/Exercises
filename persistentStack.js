@@ -1,5 +1,4 @@
-// Implement a Stack class that exposes two methods: push and pop. 
-// The data should pipe through the queue in LIFO order.
+// Store information in JSON file(s). Use node:fs module.
 export { };
 import * as fs from "fs/promises"
 
@@ -15,7 +14,7 @@ class PersistentStack {
 	}
 
 	async init() {
-		const str = (await fs.readFile("db.json")).toString()
+		const str = (await fs.readFile("db.json"))
 		const xs = JSON.parse(str)
 		for (const x of xs.reverse()) {
 			await this.lpush(x)
@@ -36,13 +35,15 @@ class PersistentStack {
 		this.length++
 	}
 
-	lpop() {
+	async lpop() {
 		if (!this.head) {
 			return undefined
 		}
 		const current = this.head
 		this.head = this.head.next
 		this.length--
+		const str = JSON.stringify(this.toArray(), null, 2)
+		await fs.writeFile("db.json", str, { flag: "w" })
 		return current.value
 	}
 
@@ -73,5 +74,9 @@ class PersistentStack {
 
 const stack = new PersistentStack("./db.json")
 await stack.init()
-await stack.lpush(5)
-console.log(stack);
+await stack.lpush(1)
+console.log(stack.toArray()); // [ 1 ]
+await stack.lpush(2)
+console.log(stack.toArray()); // [ 2, 1 ]
+await stack.lpop()
+console.log(stack.toArray()); // [ 1 ]
