@@ -14,8 +14,8 @@ class PersistentStack {
 	}
 
 	async init() {
-		const str = (await fs.readFile("db.json"))
-		const xs = JSON.parse(str)
+		const str = (await fs.readFile("db.json")).toString()
+		const xs = str ? JSON.parse(str) : []
 		for (const x of xs.reverse()) {
 			await this.lpush(x)
 		}
