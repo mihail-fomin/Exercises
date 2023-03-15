@@ -34,11 +34,13 @@ function intersection(set1, setRight) {
 }
 
 function difference(set1, setRight) {
+	// Version-1 | complexity: O(n)
+	// return new Set([...set1].filter(element => !setRight.has(element)))
+
+	// Version-2 | complexity: O(n)
 	const setLeft = new Set(set1)
-	for (const x of setLeft) {
-		if (setRight.has(x)) {
-			setLeft.delete(x)
-		}
+	for (const x of setRight) {
+		setLeft.delete(x)
 	}
 	return setLeft
 }
@@ -48,7 +50,7 @@ function reduce1(arr, reduceFn) {
 		throw new Error("`arr` must not be empty")
 	}
 	const [elem, ...rest] = arr
-	return arr.reduce(reduceFn, elem)
+	return rest.reduce(reduceFn, elem)
 }
 
 console.log(reduce1([set4, set5], intersection))
