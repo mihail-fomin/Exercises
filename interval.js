@@ -19,24 +19,3 @@ const interval = mySetInterval(() =>
 setTimeout(() => {
 	interval.clearInterval()
 }, 5500)
-
-
-/*====================================================
-*/
-
-// Here's a broken implementation of setInterval based on setTimeout:
-
-// function setInterval(callback, delay) {
-// 	const t = setTimeout(() => {
-// 		callback()
-// 		t = setTimeout(callback, delay)
-// 	}, delay)
-// 	return {
-// 		clearInterval: () => clearTimeout(t)
-// 	}
-// }
-
-// const interval = setInterval(console.log, 1000, console);
-
-// clearInterval(interval);
-
