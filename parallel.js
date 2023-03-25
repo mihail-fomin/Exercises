@@ -29,6 +29,6 @@ parallel([
 		}, 1000)
 	}
 ], (results) => {
-	console.log(results) // => ['one','two'] after ~200 ms
+	console.log(results) // => ['one','two'] after ~2000 ms
 })
 
