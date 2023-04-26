@@ -1,6 +1,5 @@
 // Implement an waterfall.series replica.
 
-
 function waterfall(arr, next) {
 	let result
 	function go(arr) {
