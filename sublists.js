@@ -7,7 +7,7 @@ function printAllSublists(arr) {
 		let total = 0
 		for (let j = i; j < arr.length; j++) {
 			total += arr[j]
-			if (total == 0) {
+			if (total === 0) {
 				result++
 				console.log(`Subarray [${i}...${j}]`)
 			}
