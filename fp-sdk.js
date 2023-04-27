@@ -1,6 +1,6 @@
 // Implement an SDK (set of functions/methods/datastructures) to work with the selected API.
 
-// As an example I use free SWAPI and JSON placeholder free API services
+// As an example I use SWAPI and JSON placeholder free API services
 
 export { };
 
