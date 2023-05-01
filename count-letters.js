@@ -31,3 +31,14 @@ function countAndSortLetters(text) {
 }
 
 console.log(countAndSortLetters(str))
+
+/*===============================================================================*/
+// AI solution
+
+function count(str) {
+  const result = {};
+  for (const char of str) {
+    result[char] = (result[char] || 0) + 1;
+  }
+  return result;
+}
