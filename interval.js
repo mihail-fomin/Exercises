@@ -19,3 +19,24 @@ const interval = mySetInterval(() =>
 setTimeout(() => {
 	interval.clearInterval()
 }, 5500)
+
+
+// AI solution 
+
+function interval(func, time) {
+  setTimeout(() => {
+    func();
+    interval(func, time);
+  }, time);
+}
+
+let count = 0;
+
+const increment = () => {
+  count++;
+  console.log(count);
+}
+
+interval(increment, 1000);
+
+This function will call 'function every 'time' ms, until clearInterval is called or on script stopping.
