@@ -13,3 +13,24 @@ function alphabetPosition(text) {
 }
 
 console.log(alphabetPosition("The sunset sets at twelve o' clock.")); // "20 8 5 19 21 14 19 5 20 19 5 20 19 1 20 20 23 5 12 22 5 15 3 12 15 3 11"
+
+
+// AI solution:
+
+function replaceChars(str) {
+  let output = "";
+  for (let i = 0; i < str.length; i++) {
+    let charCode = str.charCodeAt(i);
+    if (charCode >= 65 && charCode <= 90) { // A-Z
+      output += (charCode - 64) + " ";
+    } else if (charCode >= 97 && charCode <= 122) { // a-z
+      output += (charCode - 96) + " ";
+    } else {
+      output += "- "; // symbol niether belongs to A-Z nor a-z
+    }
+  }
+  return output.trim(); // убираем лишние пробелы в начале и конце строки
+}
+
+
+console.log(replaceChars("Hello, world!")); // 8 5 12 12 15 - 23 15 18 12 4 - 
